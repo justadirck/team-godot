@@ -1,6 +1,5 @@
 # team-godot
 
-## Project Branches
+## Projects
 
-### 2d-platformer
-https://github.com/GDquest/Your-First-Game-Godot-2d-Platformer
+### branch: 2d-platformer
