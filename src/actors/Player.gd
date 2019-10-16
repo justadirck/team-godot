@@ -4,7 +4,7 @@ class_name Player
 func _physics_process(delta: float) -> void:
 	var direction: = _get_direction()
 	velocity = _calculate_move_velocity(velocity, direction, speed)
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 		
 		
 func _get_direction() -> Vector2:
@@ -23,5 +23,5 @@ func _calculate_move_velocity(
 	new_velocity.y += gravity * get_physics_process_delta_time()
 	if direction.y == -1.0:
 		new_velocity.y = speed.y * direction.y
-	return speed * direction
+	return new_velocity
 	
