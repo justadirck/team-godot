@@ -1,5 +1,4 @@
 # team-godot
 
 ## Projects
-
-### branch: 2d-platformer
+branch: 2d-platformer
