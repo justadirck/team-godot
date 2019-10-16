@@ -10,12 +10,14 @@ extents = Vector2( 20.9909, 19.3212 )
 position = Vector2( 0, -51.2999 )
 collision_mask = 8
 script = ExtResource( 1 )
+speed = Vector2( 800, 1000 )
+gravity = 4000.0
 
 [node name="player" type="Sprite" parent="."]
-position = Vector2( -0.160194, 29.7285 )
+position = Vector2( 0, 29 )
 scale = Vector2( 0.509403, 0.459537 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 30.1167 )
+position = Vector2( 0, 30.7574 )
 shape = SubResource( 1 )
