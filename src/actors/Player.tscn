@@ -26,7 +26,16 @@ position = Vector2( 0, 32.3833 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 2.13745, 25.65 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 5760
+limit_bottom = 1080
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.0
+drag_margin_right = 0.0
 
 [node name="EnemyArea" type="Area2D" parent="."]
 monitorable = false

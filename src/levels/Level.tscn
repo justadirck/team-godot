@@ -1,18 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/tileset.png" type="Texture" id=1]
-[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/actors/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fence.png" type="Texture" id=1]
+[ext_resource path="res://assets/tileset.png" type="Texture" id=2]
+[ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/actors/Enemy.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
+[sub_resource type="Gradient" id=1]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.620513 )
+colors = PoolColorArray( 0.117647, 0.176471, 0.305882, 1, 0.196078, 0.25098, 0.498039, 1 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="TileSet" id=4]
 0/name = "tileset.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 80, 80 )
+0/region = Rect2( 0, 0, 40, 40 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -20,26 +29,45 @@ points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 1 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 
 [node name="LevelTemplate" type="Node2D"]
-position = Vector2( 9, 6 )
+__meta__ = {
+"_edit_vertical_guides_": [ 1920.0, 3840.0, 5760.0 ]
+}
+
+[node name="sky" type="TextureRect" parent="."]
+margin_right = 5760.0
+margin_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource( 2 )
+stretch_mode = 1
+
+[node name="fence" type="TextureRect" parent="."]
+margin_top = 610.0
+margin_right = 5760.0
+margin_bottom = 835.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 1 )
+stretch_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( -19.033, -5.54344 )
-tile_set = SubResource( 2 )
-cell_size = Vector2( 80, 80 )
+tile_set = SubResource( 4 )
+cell_size = Vector2( 40, 40 )
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 12, 0, 0, 65536, 0, 0, 65548, 0, 0, 131072, 0, 0, 131084, 0, 0, 196608, 0, 0, 196620, 0, 0, 262144, 0, 0, 262156, 0, 0, 327680, 0, 0, 327692, 0, 0, 393216, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393228, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0 )
+tile_data = PoolIntArray( 0, 0, 0, 143, 0, 0, 65536, 0, 0, 65679, 0, 0, 131072, 0, 0, 131215, 0, 0, 196608, 0, 0, 196751, 0, 0, 262144, 0, 0, 262287, 0, 0, 327680, 0, 0, 327823, 0, 0, 393216, 0, 0, 393359, 0, 0, 458752, 0, 0, 458895, 0, 0, 524288, 0, 0, 524431, 0, 0, 589824, 0, 0, 589967, 0, 0, 655360, 0, 0, 655503, 0, 0, 720896, 0, 0, 721039, 0, 0, 786432, 0, 0, 786575, 0, 0, 851968, 0, 0, 852111, 0, 0, 917504, 0, 0, 917647, 0, 0, 983040, 0, 0, 983183, 0, 0, 1048576, 0, 0, 1048719, 0, 0, 1114112, 0, 0, 1114255, 0, 0, 1179648, 0, 0, 1179791, 0, 0, 1245184, 0, 0, 1245327, 0, 0, 1310720, 0, 0, 1310863, 0, 0, 1376256, 0, 0, 1376399, 0, 0, 1441792, 0, 0, 1441935, 0, 0, 1507328, 0, 0, 1507471, 0, 0, 1572864, 0, 0, 1573007, 0, 0, 1638400, 0, 0, 1638543, 0, 0, 1703936, 0, 0, 1703937, 0, 0, 1703938, 0, 0, 1703939, 0, 0, 1703940, 0, 0, 1703941, 0, 0, 1703942, 0, 0, 1703943, 0, 0, 1703944, 0, 0, 1703945, 0, 0, 1703946, 0, 0, 1703947, 0, 0, 1703948, 0, 0, 1703949, 0, 0, 1703950, 0, 0, 1703951, 0, 0, 1703952, 0, 0, 1703953, 0, 0, 1703954, 0, 0, 1703955, 0, 0, 1703956, 0, 0, 1703957, 0, 0, 1703958, 0, 0, 1703959, 0, 0, 1703960, 0, 0, 1703961, 0, 0, 1703962, 0, 0, 1703963, 0, 0, 1703964, 0, 0, 1703965, 0, 0, 1703966, 0, 0, 1703967, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1703970, 0, 0, 1703971, 0, 0, 1703972, 0, 0, 1703973, 0, 0, 1703974, 0, 0, 1703975, 0, 0, 1703976, 0, 0, 1703977, 0, 0, 1703978, 0, 0, 1703979, 0, 0, 1703980, 0, 0, 1703981, 0, 0, 1703982, 0, 0, 1703983, 0, 0, 1703984, 0, 0, 1703985, 0, 0, 1703986, 0, 0, 1703987, 0, 0, 1703988, 0, 0, 1703989, 0, 0, 1703990, 0, 0, 1703991, 0, 0, 1703992, 0, 0, 1703993, 0, 0, 1703994, 0, 0, 1703995, 0, 0, 1703996, 0, 0, 1703997, 0, 0, 1703998, 0, 0, 1703999, 0, 0, 1704000, 0, 0, 1704001, 0, 0, 1704002, 0, 0, 1704003, 0, 0, 1704004, 0, 0, 1704005, 0, 0, 1704006, 0, 0, 1704007, 0, 0, 1704008, 0, 0, 1704009, 0, 0, 1704010, 0, 0, 1704011, 0, 0, 1704012, 0, 0, 1704013, 0, 0, 1704014, 0, 0, 1704015, 0, 0, 1704016, 0, 0, 1704017, 0, 0, 1704018, 0, 0, 1704019, 0, 0, 1704020, 0, 0, 1704021, 0, 0, 1704022, 0, 0, 1704023, 0, 0, 1704024, 0, 0, 1704025, 0, 0, 1704026, 0, 0, 1704027, 0, 0, 1704028, 0, 0, 1704029, 0, 0, 1704030, 0, 0, 1704031, 0, 0, 1704032, 0, 0, 1704033, 0, 0, 1704034, 0, 0, 1704035, 0, 0, 1704036, 0, 0, 1704037, 0, 0, 1704038, 0, 0, 1704039, 0, 0, 1704040, 0, 0, 1704041, 0, 0, 1704042, 0, 0, 1704043, 0, 0, 1704044, 0, 0, 1704045, 0, 0, 1704046, 0, 0, 1704047, 0, 0, 1704048, 0, 0, 1704049, 0, 0, 1704050, 0, 0, 1704051, 0, 0, 1704052, 0, 0, 1704053, 0, 0, 1704054, 0, 0, 1704055, 0, 0, 1704056, 0, 0, 1704057, 0, 0, 1704058, 0, 0, 1704059, 0, 0, 1704060, 0, 0, 1704061, 0, 0, 1704062, 0, 0, 1704063, 0, 0, 1704064, 0, 0, 1704065, 0, 0, 1704066, 0, 0, 1704067, 0, 0, 1704068, 0, 0, 1704069, 0, 0, 1704070, 0, 0, 1704071, 0, 0, 1704072, 0, 0, 1704073, 0, 0, 1704074, 0, 0, 1704075, 0, 0, 1704076, 0, 0, 1704077, 0, 0, 1704078, 0, 0, 1704079, 0, 0 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 500, 155.263 )
+[node name="Player" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
+position = Vector2( 270, 930 )
 speed = Vector2( 600, 1400 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 996.074, -61.9874 )
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 5680, 990 )
