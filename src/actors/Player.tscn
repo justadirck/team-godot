@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20.9909, 19.3212 )
+extents = Vector2( 17.434, 18.6063 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 19.8625, 19 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, -51.2999 )
 collision_mask = 8
 script = ExtResource( 1 )
 speed = Vector2( 800, 1000 )
-gravity = 4000.0
 
 [node name="player" type="Sprite" parent="."]
 position = Vector2( 0, 29 )
@@ -19,5 +21,21 @@ scale = Vector2( 0.509403, 0.459537 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 30.7574 )
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0, 32.3833 )
 shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 2.13745, 25.65 )
+
+[node name="EnemyArea" type="Area2D" parent="."]
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="EnemyCollision" type="CollisionShape2D" parent="EnemyArea"]
+modulate = Color( 0, 0.109804, 1, 1 )
+position = Vector2( 0, 30 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="EnemyArea" to="." method="_on_EnemyArea_area_entered"]
+[connection signal="body_entered" from="EnemyArea" to="." method="_on_EnemyArea_body_entered"]
